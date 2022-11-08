@@ -2,11 +2,13 @@ Shader "Hidden/OutlineShader"
 {
     Properties
     {
+        _DepthThreshold("Depth Threshold", Range(0.0, 1.0)) = 0.5
     }
     SubShader
     {
         Tags{ "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline"}
         Cull Off ZWrite Off ZTest Always
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
@@ -41,11 +43,27 @@ Shader "Hidden/OutlineShader"
                 return o;
             }
 
+            float _DepthThreshold;
+
+            float SobelDepth(float2 uv)
+            {
+                float sizeX = abs(ddx(uv.x));
+                float sizeY = abs(ddy(uv.y));
+
+                float result = SampleSceneDepth(uv + float2(sizeX, 0));
+                result += SampleSceneDepth(uv + float2(0, sizeY));
+                result -= SampleSceneDepth(uv + float2(-sizeX, 0));
+                result -= SampleSceneDepth(uv + float2(0, -sizeY));
+                return abs(result);
+            }
+
             float4 frag(v2f i) : SV_Target
             {
-                float4 col = float4(SampleSceneNormals(i.uv),1);
-                //float4 col = float4(SampleSceneDepth(i.uv),0,0,1);
-                return col;
+                //float4 col = float4(SampleSceneNormals(i.uv),1);
+
+                float depthSobel = SobelDepth(i.uv);
+                //return col;
+                return float4(0,0,0, step(0.01, depthSobel));
             }
             ENDHLSL
         }
