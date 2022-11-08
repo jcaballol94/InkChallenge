@@ -50,10 +50,11 @@ Shader "Hidden/OutlineShader"
                 float sizeX = abs(ddx(uv.x));
                 float sizeY = abs(ddy(uv.y));
 
-                float result = SampleSceneDepth(uv + float2(sizeX, 0));
-                result += SampleSceneDepth(uv + float2(0, sizeY));
-                result -= SampleSceneDepth(uv + float2(-sizeX, 0));
-                result -= SampleSceneDepth(uv + float2(0, -sizeY));
+                float center = SampleSceneDepth(uv);
+                float result = abs(SampleSceneDepth(uv + float2(sizeX, 0)) - center);
+                result += abs(SampleSceneDepth(uv + float2(0, sizeY)) - center);
+                result += abs(SampleSceneDepth(uv + float2(-sizeX, 0)) - center);
+                result += abs(SampleSceneDepth(uv + float2(0, -sizeY)) - center);
                 return abs(result);
             }
 
@@ -63,7 +64,7 @@ Shader "Hidden/OutlineShader"
 
                 float depthSobel = SobelDepth(i.uv);
                 //return col;
-                return float4(0,0,0, step(0.01, depthSobel));
+                return float4(0,0,0, step(_DepthThreshold, depthSobel));
             }
             ENDHLSL
         }
