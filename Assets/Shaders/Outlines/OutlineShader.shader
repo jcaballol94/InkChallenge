@@ -3,6 +3,7 @@ Shader "Hidden/OutlineShader"
     Properties
     {
         _DepthThreshold("Depth Threshold", Range(0.0, 1.0)) = 0.5
+        _NormalThreshold("Normal Threshold", Range(0.0, 1.0)) = 0.5
     }
     SubShader
     {
@@ -44,6 +45,7 @@ Shader "Hidden/OutlineShader"
             }
 
             float _DepthThreshold;
+            float _NormalThreshold;
 
             float SobelDepth(float2 uv)
             {
@@ -58,13 +60,29 @@ Shader "Hidden/OutlineShader"
                 return abs(result);
             }
 
+            float3 SobelNormal(float2 uv)
+            {
+                float sizeX = abs(ddx(uv.x));
+                float sizeY = abs(ddy(uv.y));
+
+                float3 center = SampleSceneNormals(uv);
+                float3 result = abs(SampleSceneNormals(uv + float2(sizeX, 0)) - center);
+                result += abs(SampleSceneNormals(uv + float2(0, sizeY)) - center);
+                result += abs(SampleSceneNormals(uv + float2(-sizeX, 0)) - center);
+                result += abs(SampleSceneNormals(uv + float2(0, -sizeY)) - center);
+                return abs(result);
+            }
+
             float4 frag(v2f i) : SV_Target
             {
                 //float4 col = float4(SampleSceneNormals(i.uv),1);
 
                 float depthSobel = SobelDepth(i.uv);
+                float3 normalSobel = SobelNormal(i.uv);
+                float mergedNormalSobel = normalSobel.x + normalSobel.y + normalSobel.z;
                 //return col;
-                return float4(0,0,0, step(_DepthThreshold, depthSobel));
+                //return float4(0,0,0, step(_DepthThreshold, depthSobel));
+                return float4(0,0,0, max(step(_NormalThreshold, mergedNormalSobel), step(_DepthThreshold, depthSobel)));
             }
             ENDHLSL
         }

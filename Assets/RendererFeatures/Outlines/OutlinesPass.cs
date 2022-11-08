@@ -11,17 +11,19 @@ namespace InkChallenge
         private const string OUTLINE_SHADER = "Hidden/OutlineShader";
 
         private static readonly int DEPTH_THRESHOLD = Shader.PropertyToID("_DepthThreshold");
+        private static readonly int NORMAL_THRESHOLD = Shader.PropertyToID("_NormalThreshold");
 
         private Material m_material;
         private ScriptableRenderer m_renderer;
 
-        public void Setup(ScriptableRenderer renderer, float depthThreshold)
+        public void Setup(ScriptableRenderer renderer, float depthThreshold, float normalThreshold)
         {
             m_renderer = renderer;
 
             var shader = Shader.Find(OUTLINE_SHADER);
             m_material = new Material(shader);
             m_material.SetFloat(DEPTH_THRESHOLD, depthThreshold);
+            m_material.SetFloat(NORMAL_THRESHOLD, normalThreshold);
 
             renderPassEvent = RenderPassEvent.AfterRenderingSkybox;
 
