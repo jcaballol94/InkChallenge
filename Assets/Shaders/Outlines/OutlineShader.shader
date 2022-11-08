@@ -47,41 +47,25 @@ Shader "Hidden/OutlineShader"
             float _DepthThreshold;
             float _NormalThreshold;
 
-            float SobelDepth(float2 uv)
-            {
-                float sizeX = abs(ddx(uv.x));
-                float sizeY = abs(ddy(uv.y));
-
-                float center = SampleSceneDepth(uv);
-                float result = abs(SampleSceneDepth(uv + float2(sizeX, 0)) - center);
-                result += abs(SampleSceneDepth(uv + float2(0, sizeY)) - center);
-                result += abs(SampleSceneDepth(uv + float2(-sizeX, 0)) - center);
-                result += abs(SampleSceneDepth(uv + float2(0, -sizeY)) - center);
-                return abs(result);
-            }
-
-            float3 SobelNormal(float2 uv)
-            {
-                float sizeX = abs(ddx(uv.x));
-                float sizeY = abs(ddy(uv.y));
-
-                float3 center = SampleSceneNormals(uv);
-                float3 result = abs(SampleSceneNormals(uv + float2(sizeX, 0)) - center);
-                result += abs(SampleSceneNormals(uv + float2(0, sizeY)) - center);
-                result += abs(SampleSceneNormals(uv + float2(-sizeX, 0)) - center);
-                result += abs(SampleSceneNormals(uv + float2(0, -sizeY)) - center);
-                return abs(result);
-            }
-
             float4 frag(v2f i) : SV_Target
             {
-                //float4 col = float4(SampleSceneNormals(i.uv),1);
+                float sizeX = abs(ddx(i.uv.x));
+                float sizeY = abs(ddy(i.uv.y));
 
-                float depthSobel = SobelDepth(i.uv);
-                float3 normalSobel = SobelNormal(i.uv);
+                float centerDepth = SampleSceneDepth(i.uv);
+                float depthSobel = abs(SampleSceneDepth(i.uv + float2(sizeX, 0)) - centerDepth);
+                depthSobel += abs(SampleSceneDepth(i.uv + float2(0, sizeY)) - centerDepth);
+                depthSobel += abs(SampleSceneDepth(i.uv + float2(-sizeX, 0)) - centerDepth);
+                depthSobel += abs(SampleSceneDepth(i.uv + float2(0, -sizeY)) - centerDepth);
+
+                float3 centerNormal = SampleSceneNormals(i.uv);
+                float3 normalSobel = abs(SampleSceneNormals(i.uv + float2(sizeX, 0)) - centerNormal);
+                normalSobel += abs(SampleSceneNormals(i.uv + float2(0, sizeY)) - centerNormal);
+                normalSobel += abs(SampleSceneNormals(i.uv + float2(-sizeX, 0)) - centerNormal);
+                normalSobel += abs(SampleSceneNormals(i.uv + float2(0, -sizeY)) - centerNormal);
+
                 float mergedNormalSobel = normalSobel.x + normalSobel.y + normalSobel.z;
-                //return col;
-                //return float4(0,0,0, step(_DepthThreshold, depthSobel));
+
                 return float4(0,0,0, max(step(_NormalThreshold, mergedNormalSobel), step(_DepthThreshold, depthSobel)));
             }
             ENDHLSL
