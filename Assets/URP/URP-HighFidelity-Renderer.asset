@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OutlinesRendererFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  m_depthThreshold: 0.296
+  m_depthThreshold: 0.193
   m_normalThreshold: 1
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
