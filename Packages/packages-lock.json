@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.cyanilux.shadergraph-customlighting": {
+      "version": "https://github.com/Cyanilux/URP_ShaderGraphCustomLighting.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b153d7068d3a66652742e75888b431ade4c26bbb"
+    },
     "com.unity.burst": {
       "version": "1.7.4",
       "depth": 1,
