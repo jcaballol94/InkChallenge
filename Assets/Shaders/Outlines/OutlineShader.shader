@@ -30,6 +30,7 @@ Shader "Hidden/OutlineShader"
             struct v2f
             {
                 float2 uv : TEXCOORD0;
+                float3 viewDir : TEXCOORD1;
                 float4 vertex : SV_POSITION;
             };
 
@@ -40,6 +41,7 @@ Shader "Hidden/OutlineShader"
 #if UNITY_UV_STARTS_AT_TOP
                 o.vertex.y = -o.vertex.y;
 #endif
+                o.viewDir = mul(UNITY_MATRIX_I_V, float4(0, 0, 1, 0));
                 o.uv = v.uv;
                 return o;
             }
@@ -65,8 +67,8 @@ Shader "Hidden/OutlineShader"
                 normalSobel += abs(SampleSceneNormals(i.uv + float2(0, -sizeY)) - centerNormal);
 
                 float mergedNormalSobel = normalSobel.x + normalSobel.y + normalSobel.z;
-
-                return float4(0,0,0, max(step(_NormalThreshold, mergedNormalSobel), step(_DepthThreshold, depthSobel)));
+                float depthScale = dot(i.viewDir, centerNormal);
+                return float4(0,0,0, max(step(_NormalThreshold, mergedNormalSobel), step(_DepthThreshold, depthSobel * depthScale)));
             }
             ENDHLSL
         }
