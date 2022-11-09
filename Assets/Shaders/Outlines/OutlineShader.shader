@@ -49,16 +49,21 @@ Shader "Hidden/OutlineShader"
             float _DepthThreshold;
             float _NormalThreshold;
 
+            float SampleLinearSceneDetph(float2 uv, float4 zBufferParam)
+            {
+                return LinearEyeDepth(SampleSceneDepth(uv), zBufferParam);
+            }
+
             float4 frag(v2f i) : SV_Target
             {
                 float sizeX = abs(ddx(i.uv.x));
                 float sizeY = abs(ddy(i.uv.y));
 
-                float centerDepth = SampleSceneDepth(i.uv);
-                float depthSobel = abs(SampleSceneDepth(i.uv + float2(sizeX, 0)) - centerDepth);
-                depthSobel += abs(SampleSceneDepth(i.uv + float2(0, sizeY)) - centerDepth);
-                depthSobel += abs(SampleSceneDepth(i.uv + float2(-sizeX, 0)) - centerDepth);
-                depthSobel += abs(SampleSceneDepth(i.uv + float2(0, -sizeY)) - centerDepth);
+                float centerDepth = SampleLinearSceneDetph(i.uv, _ZBufferParams);
+                float depthSobel = abs(SampleLinearSceneDetph(i.uv + float2(sizeX, 0), _ZBufferParams) - centerDepth);
+                depthSobel += abs(SampleLinearSceneDetph(i.uv + float2(0, sizeY), _ZBufferParams) - centerDepth);
+                depthSobel += abs(SampleLinearSceneDetph(i.uv + float2(-sizeX, 0), _ZBufferParams) - centerDepth);
+                depthSobel += abs(SampleLinearSceneDetph(i.uv + float2(0, -sizeY), _ZBufferParams) - centerDepth);
 
                 float3 centerNormal = SampleSceneNormals(i.uv);
                 float3 normalSobel = abs(SampleSceneNormals(i.uv + float2(sizeX, 0)) - centerNormal);

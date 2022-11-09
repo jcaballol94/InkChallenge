@@ -8,7 +8,7 @@ namespace InkChallenge
     internal class OutlinesRendererFeature : ScriptableRendererFeature
     {
         private OutlinesPass m_outlinePass;
-        [Range(0,0.01f)][SerializeField] private float m_depthThreshold = 0.01f;
+        [Range(0,1f)][SerializeField] private float m_depthThreshold = 0.01f;
         [Range(0,1f)][SerializeField] private float m_normalThreshold = 0.01f;
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
