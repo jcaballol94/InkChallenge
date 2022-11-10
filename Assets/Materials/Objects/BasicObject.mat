@@ -100,7 +100,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _LineSeparation: 10
-    - _LineWidth: 2
+    - _LineWidth: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
