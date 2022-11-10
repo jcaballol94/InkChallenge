@@ -102,6 +102,8 @@ Material:
     - _LineSeparation: 10
     - _LineWidth: 1
     - _Metallic: 0
+    - _NoiseIntensity: 0.1
+    - _NoiseScale: 47.6
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
