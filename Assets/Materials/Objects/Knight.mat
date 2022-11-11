@@ -18,19 +18,23 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5b1913ac80ba6cb49af957825395c131, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _DepthDistortion: 25
+    m_Colors:
+    - _Black: {r: 0, g: 2, b: 0.5, a: 0.5}
+    - _White: {r: 1, g: 0.5, b: 1, a: 0.3}
   m_BuildTextureStacks: []
 --- !u!114 &6641455692197088412
 MonoBehaviour:
