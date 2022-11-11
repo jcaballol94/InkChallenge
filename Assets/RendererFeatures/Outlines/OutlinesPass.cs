@@ -12,11 +12,13 @@ namespace InkChallenge
 
         private static readonly int DEPTH_THRESHOLD = Shader.PropertyToID("_DepthThreshold");
         private static readonly int NORMAL_THRESHOLD = Shader.PropertyToID("_NormalThreshold");
+        private static readonly int NOISE_SCALE = Shader.PropertyToID("_NoiseScale");
+        private static readonly int NOISE_INTENSITY = Shader.PropertyToID("_NoiseIntensity");
 
         private Material m_material;
         private ScriptableRenderer m_renderer;
 
-        public void Setup(ScriptableRenderer renderer, float depthThreshold, float normalThreshold)
+        public void Setup(ScriptableRenderer renderer, float depthThreshold, float normalThreshold, float noiseScale, float noiseIntensity)
         {
             m_renderer = renderer;
 
@@ -24,6 +26,8 @@ namespace InkChallenge
             m_material = new Material(shader);
             m_material.SetFloat(DEPTH_THRESHOLD, depthThreshold);
             m_material.SetFloat(NORMAL_THRESHOLD, normalThreshold);
+            m_material.SetFloat(NOISE_SCALE, noiseScale);
+            m_material.SetFloat(NOISE_INTENSITY, noiseIntensity);
 
             renderPassEvent = RenderPassEvent.AfterRenderingSkybox;
 

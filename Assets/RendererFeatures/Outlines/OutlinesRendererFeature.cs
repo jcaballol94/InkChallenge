@@ -10,10 +10,12 @@ namespace InkChallenge
         private OutlinesPass m_outlinePass;
         [Range(0,1f)][SerializeField] private float m_depthThreshold = 0.01f;
         [Range(0,1f)][SerializeField] private float m_normalThreshold = 0.01f;
+        [SerializeField] private float m_noiseScale = 0.01f;
+        [SerializeField] private float m_noiseIntensity = 0.01f;
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
-            m_outlinePass.Setup(renderer, m_depthThreshold, m_normalThreshold);
+            m_outlinePass.Setup(renderer, m_depthThreshold, m_normalThreshold, m_noiseScale, m_noiseIntensity);
             renderer.EnqueuePass(m_outlinePass);
         }
 
