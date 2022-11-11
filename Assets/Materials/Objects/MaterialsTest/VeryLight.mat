@@ -27,7 +27,9 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _MainHatchSeparation: 20
     - _MainHatchThreshold: 0.6
+    - _SecondaryHatchSeparation: 20
     - _SecondaryHatchThreshold: 0.2
     m_Colors: []
   m_BuildTextureStacks: []

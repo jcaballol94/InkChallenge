@@ -33,6 +33,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 1
+    - _MainHatchSeparation: 10
     - _MainHatchThreshold: 0.9
     - _SecondaryHatchThreshold: 0.6
     m_Colors:

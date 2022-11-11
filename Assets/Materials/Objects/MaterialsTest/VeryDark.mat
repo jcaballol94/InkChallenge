@@ -27,9 +27,9 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _MainHatchSeparation: 2
+    - _MainHatchSeparation: 5
     - _MainHatchThreshold: 1
-    - _SecondaryHatchSeparation: 2
+    - _SecondaryHatchSeparation: 5
     - _SecondaryHatchThreshold: 0.8
     m_Colors:
     - _Noise: {r: 0.02, g: 47.6, b: 2, a: 47.6}
