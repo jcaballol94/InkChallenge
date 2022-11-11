@@ -18,7 +18,8 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -87,11 +88,12 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DepthDistortion: 50
+    - _DepthDistortion: 25
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -102,7 +104,9 @@ Material:
     - _GlossyReflections: 0
     - _InnerOutlineThreshold: 0.1
     - _LineSeparation: 10
-    - _LineWidth: 1
+    - _LineWidth: 2
+    - _MainHatchSeparation: 10
+    - _MainHatchThreshold: 0.7
     - _Metallic: 0
     - _NoiseIntensity: 0.1
     - _NoiseScale: 47.6
@@ -111,6 +115,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _SecondaryHatchSeparation: 10
+    - _SecondaryHatchThreshold: 0.3
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -120,13 +126,15 @@ Material:
     - _UVNoiseIntensity: 2
     - _UVNoiseScale: 47.59
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Black: {r: 0.1, g: 0.9, b: 0.1, a: 0.7}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Noise: {r: 0.1, g: 47.6, b: 2, a: 47.6}
+    - _Noise: {r: 0.05, g: 25, b: 2, a: 25}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _White: {r: 1, g: 0.6, b: 1, a: 0.1}
   m_BuildTextureStacks: []

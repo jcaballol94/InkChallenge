@@ -18,15 +18,21 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _MainHatchSeparation: 2
+    - _MainHatchThreshold: 1
+    - _SecondaryHatchSeparation: 2
+    - _SecondaryHatchThreshold: 0.8
+    m_Colors:
+    - _Noise: {r: 0.02, g: 47.6, b: 2, a: 47.6}
   m_BuildTextureStacks: []
 --- !u!114 &3510200840788977910
 MonoBehaviour:

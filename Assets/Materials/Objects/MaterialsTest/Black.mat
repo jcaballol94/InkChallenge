@@ -7,36 +7,32 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Light
+  m_Name: Black
   m_Shader: {fileID: -6465566751694194690, guid: 2cf5ceafcabb07749931323bf26ff5ef,
     type: 3}
   m_Parent: {fileID: 2100000, guid: cab9f2d8862c15749a7e97ec2ed425d2, type: 2}
-  m_ModifiedSerializedProperties: 16
-  m_ValidKeywords:
-  - _ALPHATEST_ON
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: -1
   stringTagMap:
-    RenderType: TransparentCutout
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d2f321fff7f05aa49ad106541e997dd3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 1
-    - _MainHatchThreshold: 0.9
-    - _SecondaryHatchThreshold: 0.6
+    - _MainHatchSeparation: 0
+    - _MainHatchThreshold: 1
+    - _SecondaryHatchSeparation: 0
+    - _SecondaryHatchThreshold: 1
     m_Colors:
-    - _Black: {r: 1, g: 0.3, b: 1, a: 0.1}
+    - _White: {r: 0.3, g: 0.8, b: 0.5, a: 0.2}
   m_BuildTextureStacks: []
 --- !u!114 &3510200840788977910
 MonoBehaviour:

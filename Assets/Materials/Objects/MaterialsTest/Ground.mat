@@ -31,7 +31,8 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -40,6 +41,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _DepthDistortion: 0
+    - _MainHatchSeparation: 7
+    - _SecondaryHatchSeparation: 7
+    - _SecondaryHatchThreshold: 0.49
     m_Colors:
     - _White: {r: 0.3, g: 0.6, b: 0.4, a: 0.5}
   m_BuildTextureStacks: []
